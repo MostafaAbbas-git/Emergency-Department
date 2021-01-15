@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en" class="h-100">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <title>Emergency Department Information System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link href="../static/../static/css/style.css" rel="stylesheet">
+</head>
+
+<body class="d-flex h-100 text-center text-white">
+    <div class="background">
+        <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+            <header class="mb-auto">
+                <div>
+                    <a href="index" style="color: inherit;text-decoration: none;"><h3 class="float-md-start mb-0">Emergency Department</h3></a>
+                    <nav class="nav nav-masthead justify-content-center float-md-end">
+                        <a class="nav-link" href="index">Home</a>
+                        <a class="nav-link active" aria-current="page" href="#">Sign-in</a>
+                        <a class="nav-link" href="aboutus">About Us</a>
+                        <a class="nav-link" href="contactus">Contact Us</a>
+                    </nav>
+                </div>
+                </header>
+            {##}
+            <form method="POST" action="/login" class="border-trier">
+                <i class="fas fa-ambulance"></i>
+                <h1 class="h3 mb-3 fw-normal">Sign-in</h1>
+            {# flash msg code #}
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="notification is-danger">
+                    {{ messages[0] }}
+                </div>
+            {% endif %}
+            {% endwith %}
+                <label for="inputEmail" class="visually-hidden">Email Address</label>
+                <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email Address" required autofocus=""="">
+                <label for="inputPassword" class="visually-hidden">Password</label>
+                <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                <div class="checkbox mb-3">
+                    <label>
+                        <input type="checkbox" value="remember-me"> Remember Me
+                    </label>
+                </div>
+
+                
+                <div class="mb-3 register-word">If you don't have account Please <a href="signup">Signup</a></div>
+                <div class="d-grid gap-2 col-4 mx-auto">
+                    <button class="btn btn-primary" type="submit">Sign In</a></button>
+                </div>
+            </form>
+            <p class="mt-5 mb-3 text-muted">&copy; 2020-2021</p>
+        </div>
+        <script src="https://kit.fontawesome.com/d2a044ecc6.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+            crossorigin="anonymous"></script>
+</body>
