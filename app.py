@@ -4,7 +4,6 @@ from flask import Flask
 from db import db
 from flask_login import LoginManager
 from flask_user import login_required, SQLAlchemyAdapter, UserManager
-# from flask_statistics import Statistics
 
 ############################################
 app = Flask(__name__)
@@ -22,7 +21,6 @@ login_manager.init_app(app)
 db_adapter = SQLAlchemyAdapter(db,  User)
 user_manager = UserManager(db_adapter, app)
 
-# statistics = Statistics(app, db, Request)
 
 
 @login_manager.user_loader
