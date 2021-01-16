@@ -1,11 +1,12 @@
-from flask import Blueprint, render_template, redirect, url_for, request, flash, send_from_directory
+from flask import Blueprint, render_template, redirect, url_for, request, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from models import User, Role, contactForm, FileModel, PatientModel, EventModel
 from db import db
 from flask_login import login_user, logout_user, login_required, current_user
-from flask_user import login_required, roles_required, roles_accepted
-import pickle
+from flask_user import login_required, roles_accepted
 import os
+from flask_bootstrap import Bootstrap
+from flask_datepicker import datepicker
 
 auth = Blueprint('auth', __name__)
 
@@ -17,7 +18,7 @@ def home():
         user = User(
             email='admin@emergency.com', active=True,
             password=generate_password_hash("admin", method='sha256'), name='Creator',
-            secret_key = "ADMIN"
+            secret_key="ADMIN"
         )
         user.roles.append(Role(name='Admin'))
         db.session.add(user)
@@ -127,7 +128,15 @@ def signup_post():
 @auth.route('/dashboard')
 @roles_accepted('Admin')
 def dashboard_form():
-    return render_template('dashboard.html')
+    patients_count = PatientModel.query.count()
+    doctors_count = User.query.filter_by(secret_key=None).count()
+    admins_count = User.query.filter_by(secret_key="ADMIN").count()
+    contact_count = contactForm.query.count()
+    events_count = EventModel.query.count()
+
+    return render_template('dashboard.html', patients_count=patients_count,
+                           contact_count=contact_count, doctors_count=doctors_count,
+                           admins_count=admins_count, events_count=events_count)
 
 
 ########
@@ -206,7 +215,8 @@ def dashboard_add_admin():
         if secret_key == "ADMIN":
             # create a new user with the form data. Hash the password so the plaintext version isn't saved.
             new_user = User(email=email, name=name,
-                            password=generate_password_hash(password, method='sha256'),
+                            password=generate_password_hash(
+                                password, method='sha256'),
                             secret_key=secret_key, active=True)
             new_user.roles.append(Role(name='Admin'))
 
@@ -454,7 +464,6 @@ def dashboard_database_form():
     patient_rows = PatientModel.query.all()
     doctor_rows = User.query.filter_by(secret_key=None).all()
     admin_rows = User.query.filter_by(secret_key="ADMIN").all()
-    # admin_rows = User.query.filter(User.name.startswith('Admin')).all()
     contact_rows = contactForm.query.all()
     events_rows = EventModel.query.all()
     return render_template('dashboard-database.html',
@@ -473,9 +482,9 @@ def dashboard_database_form():
 def return_image(national_id):
     patient = PatientModel.query.filter_by(national_id=national_id).first()
     if patient:
-        data = FileModel.query.filter_by(patient_id=patient.id)
+        data = FileModel.query.filter_by(patient_id=patient.id).all()
     else:
-        data = None
+        data = []
     return render_template('images.html', data=data, patient=patient)
 ########
 

@@ -9,6 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link href="../static/css/style.css" rel="stylesheet">
+    <link href="../static/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
 </head>
 
 <body class="dashboard">
@@ -64,8 +65,7 @@
                 </div>
             </nav>
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                <div class="alert alert-success" role="alert">
-                {#<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">#}
+                <div class="alert alert-dark" role="alert">
                     {# flash msg code #}
                     {% with messages = get_flashed_messages() %}
                         {% if messages %}
@@ -136,11 +136,33 @@
                         <input name="end" type="text" aria-label="End-Time" class="form-control" placeholder="End-Time"> 
                         -->
                         <input name="description" type="text" aria-label="description" class="form-control" placeholder="description">
-                        <input type="text" value="2012-05-15 21:05" name="start" placeholder="Start-Time" id="datetimepicker" data-date-format="yyyy-mm-dd hh:ii">
+                                    
+                        {#DateTime Picking#}
+                        <div class="form-group">
+                            
+                            <div class="input-group date form_datetime col-md-5" data-date="2021-01-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+                                <input name="start" placeholder="Start-Time" id="datetimepicker" class="form-control" size="16" type="text" value="" readonly>
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                            </div>
+                            <input type="hidden" id="dtp_input1" value="" /><br/>
+                        </div>
+                        
                         <input type="text" value="2012-05-15 21:05" name="end" placeholder="End-Time" id="datetimepicker" data-date-format="yyyy-mm-dd hh:ii">
 
                         <button class="w-60 btn btn-lg btn-primary" type="submit">Add Event</button>
                     </form>
+
+            {#DateTime Picking#}
+            <div class="form-group">
+                <label for="dtp_input1" class="col-md-2 control-label">DateTime Picking</label>
+                <div class="input-group date form_datetime col-md-5" data-date="2021-01-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+                    <input name="start" placeholder="Start-Time" id="datetimepicker" class="form-control" size="16" type="text" value="" readonly>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+					<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                </div>
+				<input type="hidden" id="dtp_input1" value="" /><br/>
+            </div>
 
                     <br></br> <hr></hr>
                     <h2>Edit Event</h2>
@@ -223,7 +245,17 @@
             </footer>
         </div>
     </div>
-
+</div>
+            {#DateTime Picking#}
+            <div class="form-group">
+                <label for="dtp_input1" class="col-md-2 control-label">DateTime Picking</label>
+                <div class="input-group date form_datetime col-md-5" data-date="1979-09-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+                    <input class="form-control" size="16" type="text" value="" readonly>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+					<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                </div>
+				<input type="hidden" id="dtp_input1" value="" /><br/>
+            </div>
     <script>
         $('#datetimepicker').datetimepicker();
     </script>
@@ -236,6 +268,43 @@
         integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha"
         crossorigin="anonymous"></script>
     <script src="js/dashboard.js"></script>
+        
+    <script type="text/javascript" src="../static/js/jquery-1.8.3.min.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="../static/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../static/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+    <script type="text/javascript">  
+        $('.form_datetime').datetimepicker({
+            //language:  'fr',
+            weekStart: 1,
+            todayBtn:  1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            forceParse: 0,
+            showMeridian: 1
+        });
+        $('.form_date').datetimepicker({
+            language:  'fr',
+            weekStart: 1,
+            todayBtn:  1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            minView: 2,
+            forceParse: 0
+        });
+        $('.form_time').datetimepicker({
+            language:  'fr',
+            weekStart: 1,
+            todayBtn:  1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 1,
+            minView: 0,
+            maxView: 1,
+            forceParse: 0
+        });
+    </script>
 </body>
 
 </html>
