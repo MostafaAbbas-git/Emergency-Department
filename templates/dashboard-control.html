@@ -104,6 +104,8 @@
                     <form action="/dashboard-add-admin" method="POST" >
                         <input name="name" type="text" aria-label="full name" class="form-control" placeholder="Full Name" required
                             autofocus>
+                        <input name="secret_key" type="text" aria-label="secret key" class="form-control" placeholder="SECRET KEY" required
+                        autofocus>
                         <input name="email" type="email" aria-label="Email" class="form-control" placeholder="Email address" required
                         autofocus>
                         <input name="password" type="password" aria-label="Password" class="form-control" placeholder="Password" required
@@ -123,6 +125,41 @@
                         
                         <button class="w-60 btn btn-lg btn-primary" type="submit">Update Doctor</button>
                     </form>
+                    
+                    <br></br> <hr></hr>
+                    <h2>Add Event</h2>
+                    <form action="/dashboard-add-event" method="POST" >
+                        <input name="national_id" type="number" aria-label="ID" class="form-control" placeholder="National ID" required
+                            autofocus>
+                        <input name="title" type="text" aria-label="Title" class="form-control" placeholder="Title">
+                        <!--<input name="start" type="text" aria-label="Start-Time" class="form-control" placeholder="Start-Time">
+                        <input name="end" type="text" aria-label="End-Time" class="form-control" placeholder="End-Time"> 
+                        -->
+                        <input name="description" type="text" aria-label="description" class="form-control" placeholder="description">
+                        <input type="text" value="2012-05-15 21:05" name="start" placeholder="Start-Time" id="datetimepicker" data-date-format="yyyy-mm-dd hh:ii">
+                        <input type="text" value="2012-05-15 21:05" name="end" placeholder="End-Time" id="datetimepicker" data-date-format="yyyy-mm-dd hh:ii">
+
+                        <button class="w-60 btn btn-lg btn-primary" type="submit">Add Event</button>
+                    </form>
+
+                    <br></br> <hr></hr>
+                    <h2>Edit Event</h2>
+                    <form action="/dashboard-edit-event" method="POST" >
+                        <input name="national_id" type="number" aria-label="ID" class="form-control" placeholder="National ID" required
+                            autofocus>
+                        <input name="event_id" type="number" aria-label="ID" class="form-control" placeholder="Event ID" required
+                        autofocus>
+                        <input name="title" type="text" aria-label="Title" class="form-control" placeholder="Title">
+                        <!--<input name="start" type="text" aria-label="Start-Time" class="form-control" placeholder="Start-Time">
+                        <input name="end" type="text" aria-label="End-Time" class="form-control" placeholder="End-Time"> 
+                        -->
+                        <input name="description" type="text" aria-label="description" class="form-control" placeholder="description">
+                        <input type="text" value="2012-05-15 21:05" name="start" placeholder="Start-Time" id="datetimepicker" data-date-format="yyyy-mm-dd hh:ii">
+                        <input type="text" value="2012-05-15 21:05" name="end" placeholder="End-Time" id="datetimepicker" data-date-format="yyyy-mm-dd hh:ii">
+
+                        <button class="w-60 btn btn-lg btn-primary" type="submit">Edit Event</button>
+                    </form>
+
                     <br></br> <hr></hr>
                     <h2>Update Patient</h2>
                     <form action="/dashboard-edit-patient" method="POST" enctype="multipart/form-data">
@@ -168,6 +205,15 @@
                         </div>
                     </form>
                     <br></br> <hr></hr>
+                    
+                    <h2>Delete Event</h2>
+                    <form action="/dashboard-delete-event" method="POST">
+                        <div class="form-group">
+                            <input name = "event_id" type="number" class="form-control" id="event_id" placeholder="Event ID" required autofocus>
+                            <button type="submit" class="btn btn-danger">Delete Event</button>
+                        </div>
+                    </form>
+                    <br></br> <hr></hr>
                 </div>
                 
                 
@@ -178,7 +224,9 @@
         </div>
     </div>
 
-
+    <script>
+        $('#datetimepicker').datetimepicker();
+    </script>
     <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"

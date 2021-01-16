@@ -4,7 +4,7 @@ from flask_user import UserMixin
 
 class User(UserMixin, db.Model):
     __tablename__ = 'allUsersTable'
-    id = db.Column(db.Integer, primary_key=True )
+    id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(100), unique=True)
     password = db.Column(db.String(100))
     name = db.Column(db.String(1000))
@@ -12,6 +12,10 @@ class User(UserMixin, db.Model):
     department = db.Column(db.String(80))
     nationality = db.Column(db.String(80))  #
     phone_num = db.Column(db.String(80))  #
+    
+    #only for admins:
+    secret_key = db.Column(db.String(50))
+    
     roles = db.relationship('Role', secondary='user_roles',
                             backref=db.backref('users', lazy='dynamic'))
 
@@ -20,35 +24,31 @@ class User(UserMixin, db.Model):
 
 
 class Role(db.Model):
-    id = db.Column(db.Integer(), primary_key=True )
+    id = db.Column(db.Integer(), primary_key=True)
     name = db.Column(db.String(50))
 
 
 class UserRoles(db.Model):
-    id = db.Column(db.Integer(), primary_key=True )
+    id = db.Column(db.Integer(), primary_key=True)
     user_id = db.Column(db.Integer(), db.ForeignKey(
         'allUsersTable.id', ondelete='CASCADE'))
     role_id = db.Column(db.Integer(), db.ForeignKey(
         'role.id', ondelete='CASCADE'))
 
 
-
-
 class contactForm(db.Model):
     __tablename__ = 'contactmsgs'
-    id = db.Column(db.Integer(), primary_key=True )
+    id = db.Column(db.Integer(), primary_key=True)
     name = db.Column(db.String(100))
     email = db.Column(db.String(100))
     subject = db.Column(db.String(1000))
     message = db.Column(db.String(10000))
 
 
-
-
 class PatientModel(db.Model):
 
     __tablename__ = "patients"
-    id = db.Column(db.Integer, primary_key=True )
+    id = db.Column(db.Integer, primary_key=True)
 
     name = db.Column(db.String(80))
     email = db.Column(db.String(100))
@@ -63,31 +63,21 @@ class PatientModel(db.Model):
     files = db.relationship('FileModel', lazy='dynamic')
 
 
-
 class FileModel(db.Model):
 
     __tablename__ = "files"
-    id = db.Column(db.Integer, primary_key=True )
+    id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(300))
-    # data = db.Column(db.LargeBinary)
-
     patient_id = db.Column(db.Integer, db.ForeignKey('patients.id'))
 
 
-# class Request(db.Model):
-#     __tablename__ = "request"
+class EventModel(db.Model):
 
-#     index = db.Column(db.Integer, primary_key=True )
-#     response_time = db.Column(db.Float)
-#     date = db.Column(db.DateTime)
-#     method = db.Column(db.String(100))
-#     size = db.Column(db.Integer)
-#     status_code = db.Column(db.Integer)
-#     path = db.Column(db.String)
-#     user_agent = db.Column(db.String)
-#     remote_address = db.Column(db.String)
-#     exception = db.Column(db.String)
-#     referrer = db.Column(db.String)
-#     browser = db.Column(db.String)
-#     platform = db.Column(db.String)
-#     mimetype = db.Column(db.String)
+    __tablename__ = "events"
+    id = db.Column(db.Integer, primary_key=True)
+    start = db.Column(db.DateTime)
+    end = db.Column(db.DateTime)
+    title = db.Column(db.String(300))
+    description = db.Column(db.String(300))
+
+    doctor_id = db.Column(db.Integer, db.ForeignKey('allUsersTable.id'))
