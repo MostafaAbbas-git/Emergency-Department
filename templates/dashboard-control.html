@@ -81,7 +81,7 @@
                   <input name="national_id" type="number" aria-label="national_id" class="form-control" placeholder="National ID" required autofocus>
                   <input name="age" type="number" aria-label="age" class="form-control" placeholder="age" required autofocus>
                   <input name="phone_num" type="number" aria-label="Phone Number" class="form-control" placeholder="Phone Number" required autofocus>
-                  <input type="text"  class="form-control" value="" name="enter" placeholder="Entering-Time" id="datetimepicker" data-date-format="yyyy-mm-dd hh:ii" required>
+                  <input type="text"  class="form-control" value="" name="enter" placeholder="Entering-Time" id="datetimepicker1" data-date-format="yyyy-mm-dd hh:ii" required>
                   <select name="gender" class="form-control" aria-label="Gender">
                      <option selected>Gender</option>
                      <option value="Male">Male</option>
@@ -139,8 +139,8 @@
 
                   <input name="title" type="text" aria-label="Title" class="form-control" placeholder="Title" required>
                   <input name="description" type="text" aria-label="description" class="form-control" placeholder="description" required>
-                  <input type="text"  class="form-control" value="" name="start" placeholder="Starting-Time" id="datetimepicker" data-date-format="yyyy-mm-dd hh:ii" required>
-                  <input type="text"  class="form-control" value="" name="end" placeholder="Ending-Time" id="datetimepicker" data-date-format="yyyy-mm-dd hh:ii" required>
+                  <input type="text"  class="form-control" value="" name="start" placeholder="Starting-Time" id="datetimepicker2" data-date-format="yyyy-mm-dd hh:ii" required>
+                  <input type="text"  class="form-control" value="" name="end" placeholder="Ending-Time" id="datetimepicker3" data-date-format="yyyy-mm-dd hh:ii" required>
 
                   <button class="w-60 btn btn-lg btn-primary" type="submit">Add Event</button>
                </form>
@@ -164,8 +164,8 @@
                   </select>
                   <input name="title" type="text" aria-label="Title" class="form-control" placeholder="New Title">
                   <input name="description" type="text" aria-label="description" class="form-control" placeholder="New Description">
-                  <input type="text"  class="form-control" value="" name="start" placeholder="Start-Time" id="datetimepicker" data-date-format="yyyy-mm-dd hh:ii" required>
-                  <input type="text" class="form-control" value="" name="end" placeholder="End-Time" id="datetimepicker" data-date-format="yyyy-mm-dd hh:ii" required>
+                  <input type="text"  class="form-control" value="" name="start" placeholder="Start-Time" id="datetimepicker4" data-date-format="yyyy-mm-dd hh:ii" required>
+                  <input type="text" class="form-control" value="" name="end" placeholder="End-Time" id="datetimepicker5" data-date-format="yyyy-mm-dd hh:ii" required>
                   <button class="w-60 btn btn-lg btn-primary" type="submit">Edit Event</button>
                </div>
                </form>
@@ -308,7 +308,12 @@
          maxView: 1,
          forceParse: 0
          });
-         $('#datetimepicker').datetimepicker();
+         $('#datetimepicker1').datetimepicker();
+         $('#datetimepicker2').datetimepicker();
+         $('#datetimepicker3').datetimepicker();
+         $('#datetimepicker4').datetimepicker();
+         $('#datetimepicker5').datetimepicker();
+         $('#datetimepicker6').datetimepicker();
       </script>
    </body>
 </html>
