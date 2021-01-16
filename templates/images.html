@@ -1,76 +1,65 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <title>Emergency Department Information System</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="../static/css/album.css" rel="stylesheet">
-  </head>
-
-  <body>
-
-    <header class="navbar navbar-dark  bg-dark flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="index">Emergency Department</a>
-        <a  class="p-1 mb-1 bg-dark text-white" href="http://127.0.0.1:5000/dashboard-database">Dashboard</a>
-        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="">
+      <title>Emergency Department Information System</title>
+      <!-- Bootstrap core CSS -->
+      <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+      <!-- Custom styles for this template -->
+      <link href="../static/css/album.css" rel="stylesheet">
+   </head>
+   <body>
+      <header class="navbar navbar-dark  bg-dark flex-md-nowrap p-0 shadow">
+         <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="index">Emergency Department</a>
+         <a  class="p-1 mb-1 bg-dark text-white" href="http://127.0.0.1:5000/dashboard-database">Dashboard</a>
+         <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
             data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
             aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <ul class="navbar-nav px-3">
+         <span class="navbar-toggler-icon"></span>
+         </button>
+         <ul class="navbar-nav px-3">
             <li class="nav-item text-nowrap">
-                <a class="nav-link" href="logout">Logout</a> 
+               <a class="nav-link" href="logout">Logout</a> 
             </li>
-        </ul>
-    </header>
-    
-    <main role="main">
-
-      <section class="jumbotron text-center">
-        <div class="container">
-          <h1 class="jumbotron-heading">{{patient.name}} Album</h1>
-          <p class="lead text-muted">All images related to {{patient.name}} on the system are shown below.</p>
-        </div>
-      </section>
-
-      <div class="album py-5 bg-light">
-        <div class="jumbotron ">
-          <div class="row column-grid">
-            {% for post in data %}
-            <div class="col-md-4 {% if loop.index == 1 %} active {% endif %}" id="slide{{ loop.index }}" style="width: 5px; height: auto ;" >
-              <div class="card mb-4 box-shadow">
-                <img src="{{post.name}}" class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Image">
-                <div class="card-body">
-                  <p class="card-text">img: {{post.name}} </p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="submit" href="" class="btn-sm btn-outline-secondary">View</button>
-                    </div>
-                    <small class="text-muted">Date: Unknown</small>
-                  </div>
-                </div>
-              </div>
+         </ul>
+      </header>
+      <main role="main">
+         <section class="jumbotron text-center">
+            <div class="container">
+               <h1 class="jumbotron-heading">{{patient.name}} Album</h1>
+               <p class="lead text-muted">All images related to {{patient.name}} on the system are shown below.</p>
             </div>
-            {% endfor %}
-          </div>
-        </div>
-      </div>
-    <!--end block -->
-    </main>
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-    <script src="../../../../assets/js/vendor/popper.min.js"></script>
-    <script src="../../../../dist/js/bootstrap.min.js"></script>
-    <script src="../../../../assets/js/vendor/holder.min.js"></script>
-  </body>
+         </section>
+         <div class="album py-5 bg-light">
+            <div class="jumbotron ">
+               <div class="row column-grid">
+                  {% for post in data %}
+                  <div class="col-md-4 {% if loop.index == 1 %} active {% endif %}" id="slide{{ loop.index }}" style="width: 5px; height: auto ;" >
+                     <div class="card mb-4 box-shadow">
+                        <img src="{{post.name}}" class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Image">
+                        <div class="card-body">
+                           <p class="card-text">ImgName: {{post.name}} </p>
+                           <div class="d-flex justify-content-between align-items-center">
+                              <small class="text-muted">Date: {{patient.enter}}</small>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  {% endfor %}
+               </div>
+            </div>
+         </div>
+         <!--end block -->
+      </main>
+      <!-- Bootstrap core JavaScript
+         ================================================== -->
+      <!-- Placed at the end of the document so the pages load faster -->
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+      <script src="../../../../assets/js/vendor/popper.min.js"></script>
+      <script src="../../../../dist/js/bootstrap.min.js"></script>
+      <script src="../../../../assets/js/vendor/holder.min.js"></script>
+   </body>
 </html>

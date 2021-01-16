@@ -5,9 +5,6 @@ from db import db
 from flask_login import login_user, logout_user, login_required, current_user
 from flask_user import login_required, roles_accepted
 import os
-from flask_bootstrap import Bootstrap
-from flask_datepicker import datepicker
-
 auth = Blueprint('auth', __name__)
 
 
@@ -149,7 +146,9 @@ def dashboard_form():
 @auth.route('/dashboard-control')
 @roles_accepted('Admin')
 def dashboard_control_form():
-    return render_template('dashboard-control.html')
+    doctor_rows = User.query.filter_by(secret_key=None).all()
+    event_rows = EventModel.query.filter_by(doctor_id=current_user.id).all()
+    return render_template('dashboard-control.html', doctor_rows=doctor_rows, event_rows=event_rows)
 
 
 @auth.route('/dashboard-add-patient', methods=['POST', 'GET'])
@@ -164,6 +163,7 @@ def dashboard_add_patient():
         phone_num = request.form.get('phone_num')
         Address = request.form.get('Address')
         gender = request.form.get('gender')
+        enter = str(request.form.get('enter'))
         imagesList = request.files.getlist("inputFile")
 
         check = PatientModel.query.filter_by(national_id=national_id).first()
@@ -174,10 +174,12 @@ def dashboard_add_patient():
 
         patient = PatientModel(name=name, email=email, age=age,
                                national_id=national_id, medical_history=medical_history,
-                               phone_num=phone_num, Address=Address, gender=gender, action="No Action added yet.")
+                               phone_num=phone_num, Address=Address,
+                               gender=gender, enter=enter, action="No Action added yet.")
 
         db.session.add(patient)
         db.session.commit()
+
         folder_path = os.path.join("static", "images", str(patient.id))
         os.mkdir(folder_path)
 
@@ -239,8 +241,8 @@ def dashboard_add_event():
     if request.method == 'POST':
         national_id = request.form.get('national_id')
         title = request.form.get('title')
-        start = request.form.get('start')
-        end = request.form.get('end')
+        start = str(request.form.get('start'))
+        end = str(request.form.get('end'))
         description = request.form.get('description')
 
         doctor = User.query.filter_by(national_id=national_id).first()
@@ -397,18 +399,27 @@ def dashboard_edit_patient():
         new_phone_num = request.form.get('new_phone_num')
         new_medical_history = request.form.get('new_medical_history')
         new_Address = request.form.get('new_Address')
-        new_file = request.files["inputFile"]
+        imagesList = request.files.getlist("inputFile")
 
         patient = PatientModel.query.filter_by(national_id=national_id).first()
 
-        newFile = FileModel(
-            name=new_file.filename, data=new_file.read(), patient_id=patient.id)
         if patient:
             patient.medical_history = new_medical_history
             patient.email = new_email
             patient.Address = new_Address
             patient.phone_num = new_phone_num
-            db.session.add(newFile)
+            folder_path = os.path.join("static", "images", str(patient.id))
+
+            if not FileModel.query.filter_by(patient_id=patient.id).first():
+                folder_path = os.path.join("static", "images", str(patient.id))
+                os.mkdir(folder_path)
+
+            for image in imagesList:
+                newFile = FileModel(name=os.path.join(
+                    folder_path, image.filename), patient_id=patient.id)
+                image.save(os.path.join(folder_path, image.filename))
+                db.session.add(newFile)
+
             db.session.commit()
             flash(f"{patient.name} has been successfully Updated!")
         else:
@@ -440,10 +451,11 @@ def dashboard_report_post():
     if request.method == 'POST':
         national_id = request.form.get('national_id')
         action = request.form.get('action')
-
+        leave = str(request.form.get('leave'))
         patient = PatientModel.query.filter_by(national_id=national_id).first()
         if patient:
             patient.action = action
+            patient.leave = leave
             db.session.commit()
             flash(
                 f"A report about {patient.name} was successfully added to the database")
@@ -478,7 +490,7 @@ def dashboard_database_form():
 
 
 @auth.route('/<national_id>')
-@roles_accepted('Admin')
+@roles_accepted('Admin', 'Doctor')
 def return_image(national_id):
     patient = PatientModel.query.filter_by(national_id=national_id).first()
     if patient:

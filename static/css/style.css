@@ -1,9 +1,9 @@
-
 .btn-secondary,
 .btn-secondary:hover,
 .btn-secondary:focus {
   color: #333;
-  text-shadow: none; /* Prevent inheritance from `body` */
+  text-shadow: none;
+  /* Prevent inheritance from `body` */
 }
 
 
@@ -22,7 +22,7 @@ body .dashboard {
   background-size: cover;
 }
 
-.background-2{
+.background-2 {
   width: 100%;
   background: url(../images/1.jpg) no-repeat fixed center;
   background-size: cover;
@@ -39,11 +39,14 @@ body .dashboard {
 }
 
 .form-control {
-  margin:5px auto 10px;
+  margin: 5px auto 10px;
   width: 60%;
 }
 
-.form-group {margin-bottom: 50px;}
+.form-group {
+  margin-bottom: 50px;
+
+}
 
 .register-word a {
   text-decoration: none;
@@ -86,7 +89,7 @@ body .dashboard {
   border-bottom-color: rgba(255, 255, 255, .25);
 }
 
-.nav-masthead .nav-link + .nav-link {
+.nav-masthead .nav-link+.nav-link {
   margin-left: 1rem;
 }
 
@@ -110,8 +113,10 @@ body .dashboard {
   top: 0;
   bottom: 0;
   left: 0;
-  z-index: 100; /* Behind the navbar */
-  padding: 48px 0 0; /* Height of navbar */
+  z-index: 100;
+  /* Behind the navbar */
+  padding: 48px 0 0;
+  /* Height of navbar */
   box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
 }
 
@@ -121,7 +126,8 @@ body .dashboard {
   height: calc(100vh - 48px);
   padding-top: .5rem;
   overflow-x: hidden;
-  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+  overflow-y: auto;
+  /* Scrollable contents if viewport is shorter than content. */
 }
 
 .sidebar .nav-link {
@@ -182,69 +188,70 @@ body .dashboard {
   box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
 }
 
-.container .Uphoto{
-  margin-bottom:10px ;
+.container .Uphoto {
+  margin-bottom: 10px;
 }
 
-.border-trier{
-border: 0px solid #fff; 
-padding: 8px 0px 10px; 
-box-shadow: -35px 17px 37px 39px rgba(0,0,0,0.8);
--webkit-box-shadow: -35px 17px 37px 39px rgba(0,0,0,0.8);
--moz-box-shadow: -35px 17px 37px 39px rgba(0,0,0,0.8);
+.border-trier {
+  border: 0px solid #fff;
+  padding: 8px 0px 10px;
+  box-shadow: -35px 17px 37px 39px rgba(0, 0, 0, 0.8);
+  -webkit-box-shadow: -35px 17px 37px 39px rgba(0, 0, 0, 0.8);
+  -moz-box-shadow: -35px 17px 37px 39px rgba(0, 0, 0, 0.8);
 }
 
-.border-trier-2{
-  border: 0px solid #fff; 
-  padding: 20px 0px 10px; 
+.border-trier-2 {
+  border: 0px solid #fff;
+  padding: 20px 0px 10px;
   margin-top: 30px;
-box-shadow: -35px 17px 37px 39px rgba(0,0,0,0.8);
--webkit-box-shadow: -35px 17px 37px 39px rgba(0,0,0,0.8);
--moz-box-shadow: -35px 17px 37px 39px rgba(0,0,0,0.8);
-  }
+  box-shadow: -35px 17px 37px 39px rgba(0, 0, 0, 0.8);
+  -webkit-box-shadow: -35px 17px 37px 39px rgba(0, 0, 0, 0.8);
+  -moz-box-shadow: -35px 17px 37px 39px rgba(0, 0, 0, 0.8);
+}
 
-.border-trier-22{
-  border: 0px solid #fff; 
-  padding: 20px 0px 10px; 
+.border-trier-22 {
+  border: 0px solid #fff;
+  padding: 20px 0px 10px;
   margin: 30px 0px 30px;
-box-shadow: -35px 17px 37px 39px rgba(0,0,0,0.8);
--webkit-box-shadow: -35px 17px 37px 39px rgba(0,0,0,0.8);
--moz-box-shadow: -35px 17px 37px 39px rgba(0,0,0,0.8);
-  }
+  box-shadow: -35px 17px 37px 39px rgba(0, 0, 0, 0.8);
+  -webkit-box-shadow: -35px 17px 37px 39px rgba(0, 0, 0, 0.8);
+  -moz-box-shadow: -35px 17px 37px 39px rgba(0, 0, 0, 0.8);
+}
 
 
 .fa-user {
   font-size: 5em;
   margin-bottom: 10px;
 }
-  
-.fa-ambulance{
+
+.fa-ambulance {
   font-size: 5em;
   margin-bottom: 10px;
   padding-top: 2px;
 }
 
-.fa-hospital-alt{
+.fa-hospital-alt {
   font-size: 5em;
   margin-bottom: 10px;
   padding-top: 2px;
 }
 
-.main-container-1{
+.main-container-1 {
   width: 100%;
 }
 
-.main-container-1 .carousel-inner h5{
+.main-container-1 .carousel-inner h5 {
   text-shadow: 1px 1px #333;
   font-size: 2.5em;
 }
 
-.main-container-1 .carousel-inner .carousel-caption{
+.main-container-1 .carousel-inner .carousel-caption {
   background: rgba(0, 0, 0, .7);
 }
 
 .featurette-divider {
-  margin: 2rem 0; /* Space out the Bootstrap <hr> more */
+  margin: 2rem 0;
+  /* Space out the Bootstrap <hr> more */
 }
 
 /* Thin out the marketing headings */
@@ -254,16 +261,16 @@ box-shadow: -35px 17px 37px 39px rgba(0,0,0,0.8);
   padding-left: 2px;
 }
 
-.lead{
+.lead {
   padding-left: 2px;
   padding-right: 5px;
 }
 
-.row{
-  --bs-gutter-x:0 !important;
+.row {
+  --bs-gutter-x: 0 !important;
 }
 
-.card{
+.card {
   margin: 10px 20px 10px;
   background: rgba(255, 255, 255, .25) !important;
 }
@@ -295,4 +302,3 @@ box-shadow: -35px 17px 37px 39px rgba(0,0,0,0.8);
     margin-top: 7rem;
   }
 }
-

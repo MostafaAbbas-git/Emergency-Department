@@ -12,10 +12,10 @@ class User(UserMixin, db.Model):
     department = db.Column(db.String(80))
     nationality = db.Column(db.String(80))  #
     phone_num = db.Column(db.String(80))  #
-    
-    #only for admins:
+
+    # only for admins:
     secret_key = db.Column(db.String(50))
-    
+
     roles = db.relationship('Role', secondary='user_roles',
                             backref=db.backref('users', lazy='dynamic'))
 
@@ -58,6 +58,8 @@ class PatientModel(db.Model):
     phone_num = db.Column(db.String(80))  # Check
     Address = db.Column(db.String(100))
     gender = db.Column(db.String(10))
+    enter = db.Column(db.DateTime)
+    leave = db.Column(db.DateTime)
 
     action = db.Column(db.String(100))
     files = db.relationship('FileModel', lazy='dynamic')

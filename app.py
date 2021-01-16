@@ -9,7 +9,7 @@ from flask_user import login_required, SQLAlchemyAdapter, UserManager
 ############################################
 app = Flask(__name__)
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+mysqlconnector://root:mysql@localhost/doctoradmin4"
+app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+mysqlconnector://root:mysql@localhost/doctoradmin5"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config['SECRET_KEY'] = 'testxyz'
 # app.config['STATISTICS_DEFAULT_DATE_SPAN'] = True
@@ -23,6 +23,7 @@ db_adapter = SQLAlchemyAdapter(db,  User)
 user_manager = UserManager(db_adapter, app)
 
 # statistics = Statistics(app, db, Request)
+
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -38,7 +39,7 @@ app.register_blueprint(auth_blueprint)
 
 @app.before_first_request
 def create_table():
-    database = "doctoradmin4"
+    database = "doctoradmin5"
 
     engine = db.create_engine(
         "mysql+mysqlconnector://root:mysql@localhost", {}
@@ -51,7 +52,7 @@ def create_table():
 
     db.create_all()
 
-    
+
 if __name__ == "__main__":
     from db import db
     db.init_app(app)
