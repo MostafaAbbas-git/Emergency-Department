@@ -112,12 +112,14 @@
                </hr>
                <h2>Update Doctor</h2>
                <form action="/dashboard-edit-doctor" method="POST" >
+               
                   <select name="national_id" class="form-control" aria-label="National ID">
                      <option selected>National ID</option>
                      {% for doctor in doctor_rows %}
                      <option value="{{doctor.national_id}}">{{doctor.name}}: {{ doctor.national_id }}</option>
                      {% endfor %}
                   </select>
+               
                   <input name="new_email" type="email" aria-label="Email" class="form-control" placeholder="Email address">
                   <input name="new_department" type="text" aria-label="New Department" class="form-control" placeholder="New Department">
                   <input name="new_phone_num" type="number" aria-label="New Phone Number" class="form-control" placeholder="New Phone Number">
@@ -128,16 +130,18 @@
                </hr>
                <h2>Add Event</h2>
                <form action="/dashboard-add-event" class="form-horizontal"  role="form" method="POST">
-                  <select name="national_id" class="form-control" aria-label="National ID">
+               <select name="national_id" class="form-control" aria-label="National ID">
                      <option selected>National ID</option>
                      {% for doctor in doctor_rows %}
                      <option value="{{doctor.national_id}}">{{doctor.name}}: {{ doctor.national_id }}</option>
                      {% endfor %}
-                  </select>
+               </select>
+
                   <input name="title" type="text" aria-label="Title" class="form-control" placeholder="Title" required>
                   <input name="description" type="text" aria-label="description" class="form-control" placeholder="description" required>
-                  <input type="text" class="form-control" name="start" placeholder="Start-Time" id="datetimepicker">
-                  <input type="text" class="form-control"  name="end" placeholder="End-Time" id="datetimepicker" data-date-format="yyyy-mm-dd hh:ii" required>
+                  <input type="text"  class="form-control" value="" name="start" placeholder="Starting-Time" id="datetimepicker" data-date-format="yyyy-mm-dd hh:ii" required>
+                  <input type="text"  class="form-control" value="" name="end" placeholder="Ending-Time" id="datetimepicker" data-date-format="yyyy-mm-dd hh:ii" required>
+
                   <button class="w-60 btn btn-lg btn-primary" type="submit">Add Event</button>
                </form>
                <br></br> 
@@ -145,6 +149,7 @@
                </hr>
                <h2>Edit Event</h2>
                <form action="/dashboard-edit-event" method="POST" >
+               <div class="form-group">
                   <select name="national_id" class="form-control" aria-label="National ID">
                      <option selected>National ID</option>
                      {% for doctor in doctor_rows %}
@@ -154,7 +159,7 @@
                   <select name="event_id" class="form-control" aria-label="Event ID">
                      <option selected>Event ID</option>
                      {% for event in event_rows %}
-                     <option value="{{event.id}}">{{event.id}}, Old Title: {{ event.title }}</option>
+                     <option value="{{event.id}}">{{event.id}}, Title: {{ event.title }}</option>
                      {% endfor %}
                   </select>
                   <input name="title" type="text" aria-label="Title" class="form-control" placeholder="New Title">
@@ -162,13 +167,19 @@
                   <input type="text"  class="form-control" value="" name="start" placeholder="Start-Time" id="datetimepicker" data-date-format="yyyy-mm-dd hh:ii" required>
                   <input type="text" class="form-control" value="" name="end" placeholder="End-Time" id="datetimepicker" data-date-format="yyyy-mm-dd hh:ii" required>
                   <button class="w-60 btn btn-lg btn-primary" type="submit">Edit Event</button>
+               </div>
                </form>
                <br></br> 
                <hr>
                </hr>
                <h2>Update Patient</h2>
                <form action="/dashboard-edit-patient" method="POST" enctype="multipart/form-data">
-                  <input name="national_id" type="number" aria-label="national_id" class="form-control" placeholder="National ID" required autofocus>
+                  <select name="national_id" class="form-control" aria-label="National ID" required>
+                     <option selected>National ID</option>
+                     {% for patient in patient_rows %}
+                     <option value="{{patient.national_id}}">{{patient.name}}: {{ patient.national_id }}</option>
+                     {% endfor %}
+                  </select>
                   <input name="new_email" type="email" aria-label="Email" class="form-control" placeholder="Email address" >
                   <input name="new_medical_history" type="text" aria-label="Medical History" class="form-control" placeholder="Medical History" >
                   <input name="new_Address" type="text" aria-label="Address" class="form-control" placeholder="Address" >
@@ -184,7 +195,13 @@
                <h2>Delete Patient</h2>
                <form action="/dashboard-delete-patient" method="POST">
                   <div class="form-group">
-                     <input name="national_id" type="number" class="form-control" id="nationaID" placeholder="Patient National ID" required>
+                  
+                  <select name="national_id" class="form-control" aria-label="Patient National ID" required>
+                     <option selected>National ID</option>
+                     {% for patient in patient_rows %}
+                     <option value="{{patient.national_id}}">{{patient.name}}: {{ patient.national_id }}</option>
+                     {% endfor %}
+                  </select>
                      <button type="submit" class="btn btn-danger">Delete Patient</button>
                   </div>
                </form>
@@ -194,7 +211,13 @@
                <h2>Delete Doctor</h2>
                <form action="/dashboard-delete-doctor" method="POST">
                   <div class="form-group">
-                     <input name = "national_id" type="number" class="form-control" id="nationaID" placeholder="Doctor National ID" required>
+                     
+                  <select name="national_id" class="form-control" aria-label="Doctor National ID" required>
+                     <option selected>National ID</option>
+                     {% for doctor in doctor_rows %}
+                     <option value="{{doctor.national_id}}">{{doctor.name}}: {{ doctor.national_id }}</option>
+                     {% endfor %}
+                  </select>
                      <button type="submit" class="btn btn-danger">Delete Doctor</button>
                   </div>
                </form>
@@ -204,7 +227,12 @@
                <h2>Delete Admin</h2>
                <form action="/dashboard-delete-admin" method="POST">
                   <div class="form-group">
-                     <input name = "email" type="email" class="form-control" id="Email" placeholder="Admin Email" required autofocus>
+                  <select name="email" class="form-control" aria-label="Admin Email" required>
+                     <option selected>National ID</option>
+                     {% for admin in admin_rows %}
+                        <option value="{{admin.email}}">{{admin.name}}: {{ admin.email }}</option>
+                     {% endfor %}
+                  </select>
                      <button type="submit" class="btn btn-danger">Delete Admin</button>
                   </div>
                </form>
@@ -214,7 +242,12 @@
                <h2>Delete Event</h2>
                <form action="/dashboard-delete-event" method="POST">
                   <div class="form-group">
-                     <input name = "event_id" type="number" class="form-control" id="event_id" placeholder="Event ID" required autofocus>
+                  <select name="event_id" class="form-control" aria-label="Event ID">
+                     <option selected>Event ID</option>
+                     {% for event in event_rows %}
+                        <option value="{{event.id}}">{{event.id}}, Title: {{ event.title }}</option>
+                     {% endfor %}
+                  </select>
                      <button type="submit" class="btn btn-danger">Delete Event</button>
                   </div>
                </form>

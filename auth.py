@@ -147,8 +147,12 @@ def dashboard_form():
 @roles_accepted('Admin')
 def dashboard_control_form():
     doctor_rows = User.query.filter_by(secret_key=None).all()
-    event_rows = EventModel.query.filter_by(doctor_id=current_user.id).all()
-    return render_template('dashboard-control.html', doctor_rows=doctor_rows, event_rows=event_rows)
+    event_rows = EventModel.query.all()
+    patient_rows = PatientModel.query.all()
+    admin_rows = User.query.filter_by(secret_key="ADMIN").all()
+    return render_template('dashboard-control.html',
+                           doctor_rows=doctor_rows, event_rows=event_rows,
+                           patient_rows=patient_rows, admin_rows=admin_rows)
 
 
 @auth.route('/dashboard-add-patient', methods=['POST', 'GET'])

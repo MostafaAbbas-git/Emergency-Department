@@ -146,7 +146,13 @@
                {% endwith %}
                <form action="/dashboard-report-post" method="POST">
                   <div class="form-group">
-                     <input name="national_id" type="number" class="form-control" id="patientID" placeholder="Patient National ID" required>
+                     
+                  <select name="national_id" class="form-control" aria-label="National ID" required>
+                     <option selected>National ID</option>
+                     {% for patient in patient_rows %}
+                     <option value="{{patient.national_id}}">{{patient.name}}: {{ patient.national_id }}</option>
+                     {% endfor %}
+                  </select>
                      <input type="text"  class="form-control" value="" name="leave" placeholder="Leaving-Time" id="datetimepicker" data-date-format="yyyy-mm-dd hh:ii" required>
                      <textarea name="action" id="description" class="form-control" cols="30" rows="10"
                         placeholder="Your description...."></textarea>

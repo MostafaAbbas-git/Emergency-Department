@@ -9,7 +9,7 @@ from flask_user import login_required, SQLAlchemyAdapter, UserManager
 ############################################
 app = Flask(__name__)
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+mysqlconnector://root:mysql@localhost/doctoradmin5"
+app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+mysqlconnector://root:mysql@localhost/EmergencyDepartment"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config['SECRET_KEY'] = 'testxyz'
 # app.config['STATISTICS_DEFAULT_DATE_SPAN'] = True
@@ -39,7 +39,7 @@ app.register_blueprint(auth_blueprint)
 
 @app.before_first_request
 def create_table():
-    database = "doctoradmin5"
+    database = "EmergencyDepartment"
 
     engine = db.create_engine(
         "mysql+mysqlconnector://root:mysql@localhost", {}
