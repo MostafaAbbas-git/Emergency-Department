@@ -35,22 +35,31 @@ This is a simple hospital management system software focused mainly on Emergency
         git clone https://github.com/MostafaAbbas-git/Emergency-Department.git
         ```
 
-1. Create a Virtual Environment (Optional)
-    ```sh
-    python -m venv .HIS-EMG
-    ```
-2. Activate the virtual environment 
+2. Install Virtualenv  (Optional)
+
+        ```sh
+        pip install virtualenv
+        ```
+
+
+3. Create a Virtual Environment (Optional)
+
+        ```sh
+        virtualenv HIS-EMG --python=3.7
+        ```
+
+4. Activate the virtual environment 
     - using CMD
         ```sh
-        .\.HIS-EMG\Scripts\activate
+        .\HIS-EMG\Scripts\activate
         ```
     - using PowerShell
         ```sh
-        .\.HIS-EMG\Scripts\Activate.ps1
+        .\HIS-EMG\Scripts\Activate.ps1
         ```
     - using Bash
         ```sh
-        source .HIS-EMG/bin/activate
+        source HIS-EMG/bin/activate
         ```
 
 3. Install the requirements and dependancies
