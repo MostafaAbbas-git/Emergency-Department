@@ -8,7 +8,7 @@ from flask_user import SQLAlchemyAdapter, UserManager
 ############################################
 app = Flask(__name__)
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+mysqlconnector://root:mysql@localhost/EmergencyDepartment"
+app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+mysqlconnector://root:mysql@localhost/EmergencyT04"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config['SECRET_KEY'] = 'Emergency'
 
@@ -36,7 +36,7 @@ app.register_blueprint(auth_blueprint)
 
 @app.before_first_request
 def create_table():
-    database = "EmergencyDepartment"
+    database = "EmergencyT04"
 
     engine = db.create_engine(
         "mysql+mysqlconnector://root:mysql@localhost", {}

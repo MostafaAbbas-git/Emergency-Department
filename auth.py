@@ -119,8 +119,8 @@ def signup_post():
     # add the new user to the database
     db.session.add(new_user)
     db.session.commit()
-
-    return redirect(url_for('auth.login'))
+    flash(f"Doctor {new_user.name} account was created successfully and added to the database!")
+    return redirect(url_for('auth.signup_post'))
 
 
 ########

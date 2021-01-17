@@ -34,14 +34,14 @@
                      {% with messages = get_flashed_messages() %}
                      {% if messages %}
                      <div class="notification is-danger">
-                        {{ messages[0] }}. Go to <a href="{{ url_for('auth.login') }}">login page</a>.
+                        {{ messages[0] }}
                      </div>
                      {% endif %}
                      {% endwith %}
                      <input name="name" type="text" aria-label="Name" class="form-control" placeholder="Name" required autofocus="">
                      <input name="national_id" type="number" aria-label="nationalID" class="form-control" placeholder="ID" required>
                      <input name="nationality" type="text" aria-label="nationality" class="form-control" placeholder="Nationality" required>
-                     <input name="department" type="text" aria-label="department" class="form-control" placeholder="department" required>
+                     <input name="department" type="text" aria-label="department" class="form-control" placeholder="Department" required>
                      <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required>
                      <input name="phone_num" type="number" id="inputNumber" class="form-control" placeholder="Phone Number" required>
                      <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>

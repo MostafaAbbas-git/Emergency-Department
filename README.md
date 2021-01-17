@@ -1,7 +1,7 @@
 # Emergency-Department
- This is a simple hospital management system software focused mainly on Emergency department. Using Flask&MySQL for backend and HTML,CSS &JS for frontend.
+ This is a simple hospital management system software focused mainly on Emergency department using MySQL Database Service.
 
-# HIS
+
 ## Table of Contents
 
 * [About the Project](#about-the-project)
