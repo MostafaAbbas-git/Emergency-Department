@@ -84,6 +84,7 @@ def login_post():
 
 
 @auth.route('/signup')
+@roles_accepted('Admin')
 def signup():
     return render_template('signup.html')
 
