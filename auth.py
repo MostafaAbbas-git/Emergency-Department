@@ -5,6 +5,8 @@ from db import db
 from flask_login import login_user, logout_user, login_required, current_user
 from flask_user import login_required, roles_accepted
 import os
+
+
 auth = Blueprint('auth', __name__)
 
 
@@ -121,20 +123,12 @@ def signup_post():
     return redirect(url_for('auth.login'))
 
 
-# dashboard page
-
-@auth.route('/dashboard')
-@roles_accepted('Admin')
-def dashboard_form():
-
-    return render_template('dashboard.html')
-
-
 ########
 
 # "dashboard-control page"-
 # (ACCESSED BY ADMINS ONLY)
-# contains ADD and REMOVE patient funcs, EDIT and REMOVE doctor from db
+# Contains All functions related to patients, doctors, and newly-creadted-Admins, 
+
 
 
 @auth.route('/dashboard-control')
@@ -384,7 +378,8 @@ def dashboard_edit_doctor():
 
     return render_template('dashboard-control.html')
 
-# simple error: you cant update only one column, you have to fill all the field, otherwise it will return NULL
+# simple error: you cant update only one column, you have to fill all the field.
+# Otherwise it will return NULL
 # which will replace the original value.
 
 
@@ -429,9 +424,6 @@ def dashboard_edit_patient():
 ########
 
 # dashboard-report page(ACCESSED BY DOCTORS), contains all reports about patients in db and posting new report.
-
-# if this method didnt work properly, you may add new button to show the reports on the database,
-# and connect it with another auth.route with a post method and leave the default method that shows the dasboard-report alone.
 
 
 @auth.route('/dashboard-report')
@@ -491,7 +483,7 @@ def dashboard_database_form():
                            admins_count=admins_count, events_count=events_count
                            )
 
-# Showing images related to each patient
+# Showing Album of images related to each patient
 
 
 @auth.route('/<national_id>')
@@ -513,4 +505,3 @@ def logout():
     flash('You have been logged out!')  # done
     return redirect(url_for('auth.index'))
 
-# date = datetime.now().strftime("%Y/%m/%dT%H:%M:%S") ll calender

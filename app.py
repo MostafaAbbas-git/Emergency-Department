@@ -3,15 +3,15 @@ from models import User
 from flask import Flask
 from db import db
 from flask_login import LoginManager
-from flask_user import login_required, SQLAlchemyAdapter, UserManager
+from flask_user import SQLAlchemyAdapter, UserManager
 
 ############################################
 app = Flask(__name__)
 
 app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+mysqlconnector://root:mysql@localhost/EmergencyDepartment"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-app.config['SECRET_KEY'] = 'testxyz'
-# app.config['STATISTICS_DEFAULT_DATE_SPAN'] = True
+app.config['SECRET_KEY'] = 'Emergency'
+
 db.init_app(app)
 
 login_manager = LoginManager()
@@ -20,7 +20,6 @@ login_manager.init_app(app)
 
 db_adapter = SQLAlchemyAdapter(db,  User)
 user_manager = UserManager(db_adapter, app)
-
 
 
 @login_manager.user_loader

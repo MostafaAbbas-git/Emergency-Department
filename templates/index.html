@@ -23,7 +23,7 @@
                      {% if not current_user.is_authenticated %}
                      <a class="nav-link" href="login">Sign-in</a>
                      {% endif %}
-                     {% if current_user.is_authenticated %}
+                     {% if current_user.is_authenticated and current_user.has_roles('Admin')%}
                      <a class="nav-link" href="signup">Sign-up a Doctor</a>
                      {% endif %}
                      {# always show About-us and Contact-us buttons #}
