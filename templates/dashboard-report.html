@@ -32,14 +32,7 @@
             <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
                <div class="position-sticky pt-3">
                   <ul class="nav flex-column">
-                     <li class="nav-item">
-                        {% if current_user.has_roles('Admin') %} {#only show this item if the user logged in role's = Admin#}
-                        <a class="nav-link" aria-current="page" href="dashboard">
-                        <span data-feather="home"></span>
-                        Dashboard
-                        </a>
-                        {% endif %}
-                     </li>
+                    
                      <li class="nav-item">
                         {% if current_user.has_roles('Doctor') %} {#only show this item if the user logged in role's = Doctor#}
                         <a class="nav-link active" href="#">
@@ -105,8 +98,8 @@
                   <table class="table table-striped table-sm">
                      <thead>
                         <tr>
-                           <th>Full Name</th>
-                           <th>National ID</th>
+                           <th>Name</th>
+                           <th>ID</th>
                            <th>Medical History</th>
                            <th>Age</th>
                            <th>Gender</th>
@@ -127,7 +120,7 @@
                            <td>{{row["enter"]}}</td>
                            <td>{{row["leave"]}}</td>
                            <td>{{row["action"]}}</td>
-                           <td><a href="{{row["national_id"]}}">Go to Album</a></td>
+                           <td><a href="{{row["national_id"]}}">Album</a></td>
                         </tr>
                         {% endfor %}
                      </tbody>
@@ -147,8 +140,8 @@
                <form action="/dashboard-report-post" method="POST">
                   <div class="form-group">
                      
-                  <select name="national_id" class="form-control" aria-label="National ID" required>
-                     <option selected>National ID</option>
+                  <select name="national_id" class="form-control" aria-label="ID" required>
+                     <option selected>ID</option>
                      {% for patient in patient_rows %}
                      <option value="{{patient.national_id}}">{{patient.name}}: {{ patient.national_id }}</option>
                      {% endfor %}

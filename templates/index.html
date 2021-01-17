@@ -29,7 +29,7 @@
                      <a class="nav-link" href="aboutus">About Us</a>
                      {# If the user is Admin, redirect Dashboard button to Main Dashboard #}
                      {% if current_user.is_authenticated and current_user.has_roles('Admin')%}
-                     <a class="nav-link" href="dashboard">Dashboard</a>
+                     <a class="nav-link" href="dashboard-control">Dashboard</a>
                      {% endif %}
                      {# If the user is Doctor, redirect Dashboard button to Dashboard-reports directly #}
                      {% if current_user.is_authenticated and current_user.has_roles('Doctor') %}

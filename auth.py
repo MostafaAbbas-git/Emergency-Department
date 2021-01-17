@@ -125,15 +125,8 @@ def signup_post():
 @auth.route('/dashboard')
 @roles_accepted('Admin')
 def dashboard_form():
-    patients_count = PatientModel.query.count()
-    doctors_count = User.query.filter_by(secret_key=None).count()
-    admins_count = User.query.filter_by(secret_key="ADMIN").count()
-    contact_count = contactForm.query.count()
-    events_count = EventModel.query.count()
 
-    return render_template('dashboard.html', patients_count=patients_count,
-                           contact_count=contact_count, doctors_count=doctors_count,
-                           admins_count=admins_count, events_count=events_count)
+    return render_template('dashboard.html')
 
 
 ########
@@ -251,7 +244,7 @@ def dashboard_add_event():
 
         doctor = User.query.filter_by(national_id=national_id).first()
         if not doctor:
-            flash('Not valid National ID')
+            flash('Not valid ID')
         else:
             event = EventModel(start=start, end=end, title=title,
                                description=description, doctor_id=doctor.id)
@@ -278,7 +271,7 @@ def dashboard_edit_event():
         doctor = User.query.filter_by(national_id=national_id).first()
         event = EventModel.query.filter_by(id=event_id).first()
         if not doctor and event:
-            flash('Not valid National ID')
+            flash('Not valid ID')
         elif not event and doctor:
             flash('Not valid Event ID')
         else:
@@ -482,12 +475,19 @@ def dashboard_database_form():
     admin_rows = User.query.filter_by(secret_key="ADMIN").all()
     contact_rows = contactForm.query.all()
     events_rows = EventModel.query.all()
+
+    patients_count = PatientModel.query.count()
+    doctors_count = User.query.filter_by(secret_key=None).count()
+    admins_count = User.query.filter_by(secret_key="ADMIN").count()
+    contact_count = contactForm.query.count()
+    events_count = EventModel.query.count()
+
     return render_template('dashboard-database.html',
-                           patient_rows=patient_rows,
-                           doctor_rows=doctor_rows,
-                           admin_rows=admin_rows,
-                           contact_rows=contact_rows,
-                           events_rows=events_rows
+                           patient_rows=patient_rows, doctor_rows=doctor_rows,
+                           admin_rows=admin_rows, contact_rows=contact_rows,
+                           events_rows=events_rows, patients_count=patients_count,
+                           contact_count=contact_count, doctors_count=doctors_count,
+                           admins_count=admins_count, events_count=events_count
                            )
 
 # Showing images related to each patient
