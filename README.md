@@ -9,7 +9,6 @@
 * [Setting Up the Environment](#setting-up-the-environment)
 * [Working Demo of the System](#working-demo-of-the-system)
 * [First Entry Information](#first-entry-information)
-* [Extra Information Missed in The Video](#extra-information-missed-in-the-video)
 * [Our Team](#our-team)
 * [About](#about)
 
@@ -78,10 +77,8 @@ This is a simple hospital management system software focused mainly on Emergency
 You can find a video demo here
 
 ```
-https://youtu.be
+https://drive.google.com/file/d/1Dk9PFeWPxvGs39YHd3VOY7fn7Nq5KZO0/view
 ```
-## Extra Information Missed in The Video
-
 
 ## First Entry Information 
 
